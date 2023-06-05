@@ -1,0 +1,29 @@
+<?php
+include 'database.php';
+
+$sql = "SELECT * FROM livros";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "<table>";
+    echo "<tr><th>ID</th><th>Título</th><th>Autor</th><th>Ano de Publicação</th></tr>";
+
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>".$row['id']."</td>";
+        echo "<td>".$row['titulo']."</td>";
+        echo "<td>".$row['autor']."</td>";
+        echo "<td>".$row['ano_publicacao']."</td>";
+        echo "<td><img src='data:image/jpeg;base64,".base64_encode($row['arquivo'])."' alt='Imagem' width='100px'></td>";
+        echo "<td><a href='editar.php?id=".$row['id']."'>Editar</a></td>";
+        echo "<td><a href='excluir.php?id=".$row['id']."'>Excluir</a></td>";
+        echo "<td><a href='download.php?id=".$row['id']."'>Download</a></td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+} else {
+    echo "Nenhum livro encontrado.";
+}
+
+$conn->close();
+?>
