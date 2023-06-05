@@ -9,6 +9,7 @@ if ($result->num_rows > 0) {
     echo "<tr><th>ID</th><th>Título</th><th>Autor</th><th>Ano de Publicação</th></tr>";
 
     while ($row = $result->fetch_assoc()) {
+        echo '<divstyle="width: 300px; background-color: red; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">';
         echo "<tr>";
         echo "<td>".$row['id']."</td>";
         echo "<td>".$row['titulo']."</td>";
@@ -19,6 +20,7 @@ if ($result->num_rows > 0) {
         echo "<td><a href='excluir.php?id=".$row['id']."'>Excluir</a></td>";
         echo "<td><a href='download.php?id=".$row['id']."'>Download</a></td>";
         echo "</tr>";
+        echo '</div>';
     }
     echo "</table>";
 } else {
